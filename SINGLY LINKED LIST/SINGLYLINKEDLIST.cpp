@@ -32,7 +32,7 @@ class LinkedList{
 		
 		bool empty()
 		{
-			return (empty() || tail == NULL);
+			return (head == NULL || tail == NULL);
 		}
 		
 		void insert_at_beginning(int data){
