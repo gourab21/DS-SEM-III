@@ -18,11 +18,27 @@ class LinkedList{
 	public:
 		
 		LinkedList(){
-			head = NULL,tail = NULL;
+			head = tail = NULL;
+		}
+		
+		~LinkedList()
+		{
+			for (node *p; head !=0;)
+			{
+				p = head->next;
+				delete head;
+				head = p;
+			}
+		}
+		
+		
+		bool empty()
+		{
+			return (empty() || tail == NULL);
 		}
 		
 		void insert_at_beginning(int data){
-			if (head == NULL)
+			if (empty())
 			{
 				node *temp = new node();
 				temp->data = data;
@@ -44,7 +60,7 @@ class LinkedList{
 		void insert_at_end(int data){
 			node *temp = new node();
 			temp->data = data;
-			if (head == NULL){
+			if (empty()){
 				head = tail = temp;
 			}
 			else{
@@ -80,7 +96,7 @@ class LinkedList{
 		}
 		
 		void delete_at_beginning(){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else{
@@ -95,20 +111,21 @@ class LinkedList{
 		}
 		
 		void delete_at_end(){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else if (head->next == NULL){
 				
 				cout<<"Element Deleted: "<<head->data<<endl;
 				delete(head);
-				head = NULL;
+				head = tail = NULL;
 			}
 			else{
 				
 				node *temp = tail;
 				cout<<"Element Deleted: "<<temp->data<<endl;
 				temp->prev->next = NULL;
+				tail = temp->prev;
 				delete(temp);
 				
 			}					
@@ -116,7 +133,7 @@ class LinkedList{
 		}
 		
 		void delete_at_given_position(int p){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else{
@@ -142,7 +159,7 @@ class LinkedList{
 		}
 		
 		void search(int p){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty....."<<endl;
 			}
 			else if(p==head->data)
@@ -180,7 +197,7 @@ class LinkedList{
 		
 		
 		void print(){
-			if (head == NULL){ 
+			if (empty()){ 
 				cout<<"List is empty"<<endl;
 			}
 			else{
