@@ -12,25 +12,51 @@ class node{
 };
 
 class LinkedList{
-	node *head;
+	node *head,*tail;
 	public:
 		
 		LinkedList(){
-			head = NULL;
+			head = tail = NULL;
+		}
+		
+		~LinkedList()
+		{
+			for (node *p; head !=0;)
+			{
+				p = head->next;
+				delete head;
+				head = p;
+			}
+		}
+		
+		
+		bool empty()
+		{
+			return (empty() || tail == NULL);
 		}
 		
 		void insert_at_beginning(int data){
-			node *temp = new node();
-			temp->data = data;
-			temp->next = head;
-			head = temp;
+			if (empty())
+			{
+				node *temp = new node();
+				temp->data = data;
+				temp->next = head;
+				head = tail = temp;
+			}
+			else
+			{
+				node *temp = new node();
+				temp->data = data;
+				temp->next = head;
+				head = temp;
+			}
 		}
 		
 		void insert_at_end(int data){
 			node *temp = new node();
 			temp->data = data;
-			if (head == NULL){
-				head = temp;
+			if (empty()){
+				head = tail = temp;
 			}
 			else{
 				node *ptr = head;
@@ -65,7 +91,7 @@ class LinkedList{
 		}
 		
 		void delete_at_beginning(){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else{
@@ -80,14 +106,14 @@ class LinkedList{
 		}
 		
 		void delete_at_end(){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else if (head->next == NULL){
 				
 				cout<<"Element Deleted: "<<head->data<<endl;
 				delete(head);
-				head = NULL;
+				head = tail = NULL;
 			}
 			else{
 				
@@ -98,12 +124,13 @@ class LinkedList{
 				cout<<"Element Deleted: "<<temp->next->data<<endl;
 				delete(temp->next);
 				temp->next = NULL;
+				tail = temp->next;
 			}					
 		
 		}
 		
 		void delete_at_given_position(int p){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else{
@@ -130,7 +157,7 @@ class LinkedList{
 		}
 		
 		void search(int p){
-			if (head == NULL){
+			if (empty()){
 				cout<<"List is Empty....."<<endl;
 			}
 			else if(p==head->data)
@@ -183,7 +210,7 @@ class LinkedList{
 		
 		
 		void print(){
-			if (head == NULL){ 
+			if (empty()){ 
 				cout<<"List is empty"<<endl;
 			}
 			else{
