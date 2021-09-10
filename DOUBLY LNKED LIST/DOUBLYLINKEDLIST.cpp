@@ -14,11 +14,11 @@ class node{
 };
 
 class LinkedList{
-	node *head;
+	node *head,*tail;
 	public:
 		
 		LinkedList(){
-			head = NULL;
+			head = NULL,tail = NULL;
 		}
 		
 		void insert_at_beginning(int data){
@@ -28,7 +28,7 @@ class LinkedList{
 				temp->data = data;
 				temp->next = head;
 				temp->prev = NULL;
-				head = temp;
+				head = tail = temp;
 			}
 			else
 			{
@@ -45,7 +45,7 @@ class LinkedList{
 			node *temp = new node();
 			temp->data = data;
 			if (head == NULL){
-				head = temp;
+				head = tail = temp;
 			}
 			else{
 				node *ptr = head;
@@ -54,6 +54,7 @@ class LinkedList{
 				}
 				ptr->next = temp;
 				temp->prev = ptr;
+				tail = temp;
 			}
 		}
 		
@@ -105,13 +106,11 @@ class LinkedList{
 			}
 			else{
 				
-				node *temp = head;
-				while (temp->next->next != NULL) {
-					temp = temp->next;
-				}
-				cout<<"Element Deleted: "<<temp->next->data<<endl;
-				delete(temp->next);
-				temp->next = NULL;
+				node *temp = tail;
+				cout<<"Element Deleted: "<<temp->data<<endl;
+				temp->prev->next = NULL;
+				delete(temp);
+				
 			}					
 		
 		}
