@@ -14,12 +14,12 @@ class node{
 };
 
 class LinkedList{
-	node *head,*tail;
+	node *head;
 	int count=0;
 	public:
 		
 		LinkedList(){
-			head = tail = NULL;
+			head = NULL;
 		}
 		
 		~LinkedList()
@@ -34,7 +34,7 @@ class LinkedList{
 		
 		bool empty()
 		{
-			return (head == NULL || tail == NULL);
+			return (head == NULL);
 		}
 		
 		void insert_at_beginning(int data)
@@ -44,7 +44,7 @@ class LinkedList{
 				node *temp = new node();
 				temp->data = data;
 				temp->next = head;
-				head = tail = temp;
+				head  = temp;
 			}
 			else if(count ==1)
 			{
@@ -75,29 +75,51 @@ class LinkedList{
 			count++;
 		}
 		
+		void insert_at_end(int data)
+		{
+			if (count==0)
+			{
+				node *temp = new node();
+				temp->data = data;
+				temp->next = head;
+				head  = temp;
+			}
+			else if(count ==1)
+			{
+				node *temp = new node();
+				temp->data = data;
+				temp->next = head;
+				temp->prev = head;
+				head->next = temp;
+				head->prev = temp;
+			}
+			else
+			{
+				node *ptr,*temp = new node();
+				temp->data = data;
+				ptr = head->prev;
+				temp->next = head;
+				head->prev = temp;
+				ptr->next = temp;
+				temp->prev = ptr;
+			}
+					
+			count++;
+		}
+	
 		
-		
-		void insert_at_given_position(int data, int p){
+		void insert_at_given_position(int data, int x){
 			node *temp = new node();
 			temp->data = data;
-			if (p == 0){
+			node *ptr = head;
 				
-				insert_at_beginning(data);
+			while(ptr->data!=x) {
+				ptr = ptr->next;
 			}
-			else{
-				node *ptr = head;
-				
-				while(p>1) {
-					ptr = ptr->next;
-					--p;
-				}
-				
-				temp->next = ptr->next;
-				temp->prev = ptr;
-				ptr->next->prev= temp;
-				ptr->next = temp;
-				
-			}
+			temp->next = ptr->next;
+			temp->prev = ptr;
+			ptr->next->prev= temp;
+			ptr->next = temp;
 			count++;
 		}
 		
@@ -108,11 +130,7 @@ class LinkedList{
 			else{
 				cout<<"Element Deleted: "<<head->data<<endl;
 				node *ptr,*temp = head;
-				ptr = head->next;
-				while (ptr->next != head)
-				{
-					ptr=ptr->next;
-				}
+				ptr = head->prev;
 				head = temp->next;
 				ptr->next = head;
 				head->prev = ptr;
@@ -122,39 +140,58 @@ class LinkedList{
 		}
 		
 		
-		
-		void delete_at_given_position(int p){
+		void delete_at_end(){
 			if (empty()){
 				cout<<"List is Empty"<<endl;
 			}
 			else{
-				node *temp, *ptr;
-				if (p == 0) {
-					delete_at_beginning();
-				}
+				
+				node *ptr,*temp = head->prev;
+				ptr = temp->prev;
+				ptr->next=head;
+				head->prev=ptr;
+				cout<<"Element Deleted: "<<temp->data<<endl;
+				delete(temp);
+			}
+			count--;
+		}
+		
+		void delete_element(int p){
+			if (empty()){
+				cout<<"List is Empty"<<endl;
+			}
+			else{
+				node *pr, *ptr,*post;
+				pr = ptr = post = head;
+				if (p==head->data)
+					this->delete_at_beginning();
 				else{
-					temp = ptr = head;
-					while(p>0){
-						--p;
-						temp = ptr;
+					do{
+						pr=ptr;
 						ptr = ptr->next;
-					}
+						post=ptr->next;
+						
+					}while(ptr->data!=p);
 					cout<<"Element Deleted: "<<ptr->data<<endl;
-					temp->next = ptr->next;
-					ptr->next->prev = temp;
+					pr->next=post;
+					post->prev=pr;
 					delete(ptr);
 				}
 			}
 		
 		}
 		
-		void search(int p){
+		
+		int search(int p,int q=0){
+			string s;
+			int ret=0;
 			if (empty()){
-				cout<<"List is Empty....."<<endl;
+				s="List is Empty.....";
 			}
 			else if(p==head->data)
 			{
-				cout<<"match Found at index (Start 0) 0";
+				s="match Found at index (Start 0) 0";
+				ret= 1;
 			}
 			else {
 				node *temp;
@@ -167,7 +204,8 @@ class LinkedList{
 					if (p==temp->data)
 					{
 						a=true;
-						cout<<"Match found at index (start = 0)"<<pos;
+						s="Match found at index (start = 0)";
+						ret= 1;
 						break;
 					}	
 					pos++;
@@ -175,11 +213,14 @@ class LinkedList{
 				}while(temp!=head);
 				if (a==false)
 				{
-					cout<<"Item not found in List....";
+					s="Item not found in List....";
 				}
-				
+				if (q==0)
+				{
+					cout<<s<<" - "<<pos<<endl;
+				}
 			}
-		cout<<endl;
+		return ret;
 		}
 		
 		void print(){
@@ -203,15 +244,18 @@ class LinkedList{
 int main() {
 	
 	cout<<("1 to Insert at the beginning");
-	cout<<("\n2 to Insert at mid");
-	cout<<("\n3 to Delete from beginning");
-	cout<<("\n4 to Delete from mid");
-	cout<<("\n5 to Search Item");
-	cout<<("\n6 to Display");
+	cout<<("\n2 to Insert at the end");
+	cout<<("\n3 to Insert at back of X");
+	cout<<("\n4 to Delete from beginning");
+	cout<<("\n5 to Delete from End");
+	cout<<("\n6 to Delete element X");
+	cout<<("\n7 to Search Item");
+	cout<<("\n8 to Display");
 	cout<<("\n0 to Exit");
 	
 	int choice,data,p;
 	LinkedList ll;
+	LinkedList l2;
 	do {
 		cout<<"\nEnter Your Choice: ";
 		cin>>choice;
@@ -227,33 +271,51 @@ int main() {
 			case 2:
 				cout<<"Enter Element: ";
 				cin>>data;
-				cout<<"Enter Position ( zero-indexed ): ";
-				cin>>p;
-				ll.insert_at_given_position(data,p);
+				ll.insert_at_end(data);
 				break;
 				
 			case 3:
-				ll.delete_at_beginning();
+				cout<<"Enter value of element X : ";
+				cin>>p;
+				cout<<"Enter Element : ";
+				cin>>data;
+				if(ll.search(p,1)==0)
+					cout<<"X not in List";
+				else
+				{
+					ll.insert_at_given_position(data,p);
+					cout<<"Inserted Successfully...";
+				}
 				break;
+			
 		
 			case 4:
-				cout<<"Enter Position ( zero-indexed ): ";
-				cin>>p;
-				ll.delete_at_given_position(p);
+				ll.delete_at_beginning();
 				break;
 				
+				
+				
 			case 5:
+				ll.delete_at_end();
+				break;
+				
+			case 6:
+				cout<<"Enter Element: ";
+				cin>>p;
+				ll.delete_element(p);
+				break;
+			
+			case 7:
 				cout<<"Enter Element to search : ";
 				cin>>p;
 				ll.search(p);
 				break;
-				
-			case 6:
+			
+			case 8:
 				ll.print();
 				break;
+				
 			
-			default :
-				cout<<"Enter Correct Choice...";
 		}
 	} while (choice != 0);
 	
