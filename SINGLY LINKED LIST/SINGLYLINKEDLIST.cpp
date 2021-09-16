@@ -29,6 +29,8 @@ class LinkedList{
 			}
 		}
 		
+		LinkedList operator+();
+		friend LinkedList operator+(LinkedList l1,LinkedList l2);
 		
 		bool empty()
 		{
@@ -59,13 +61,9 @@ class LinkedList{
 				head = tail = temp;
 			}
 			else{
-				node *ptr = head;
-				
-				while (ptr->next != NULL){
-					ptr = ptr->next;
-				}
-				
+				node *ptr = tail;
 				ptr->next = temp;
+				tail=temp;
 			}
 		}
 		
@@ -209,6 +207,9 @@ class LinkedList{
 		
 		
 		
+	
+		
+		
 		void print(){
 			if (empty()){ 
 				cout<<"List is empty"<<endl;
@@ -226,6 +227,24 @@ class LinkedList{
 			
 };
 
+LinkedList operator+(LinkedList l1,LinkedList l2)
+		{
+			if (!l1.empty() && !l2.empty())
+			{
+				l1.tail->next=l2.head;
+				l1.tail=l2.tail;
+				return l1;		
+			}
+			else
+			{
+				cout<<"One Of the List is Empty.... Cant Concatiate....";
+				return l1;
+			}	
+		}
+
+
+
+
 
 int main() {
 	
@@ -238,10 +257,11 @@ int main() {
 	cout<<("\n7 to Search Item");
 	cout<<("\n8 to Reverse the List");
 	cout<<("\n9 to Display");
+	cout<<("\n10 to Concat");
 	cout<<("\n0 to Exit");
 	
 	int choice,data,p;
-	LinkedList ll;
+	LinkedList l1;
 	do {
 		cout<<"\nEnter Your Choice: ";
 		cin>>choice;
@@ -250,13 +270,13 @@ int main() {
 			case 1:
 				cout<<"Enter Element: ";
 				cin>>data;
-				ll.insert_at_beginning(data);
+				l1.insert_at_beginning(data);
 				break;
 				
 			case 2:
 				cout<<"Enter Element: ";
 				cin>>data;
-				ll.insert_at_end(data);
+				l1.insert_at_end(data);
 				break;
 				
 			case 3:
@@ -264,36 +284,55 @@ int main() {
 				cin>>data;
 				cout<<"Enter Position ( zero-indexed ): ";
 				cin>>p;
-				ll.insert_at_given_position(data,p);
+				l1.insert_at_given_position(data,p);
 				break;
 				
 			case 4:
-				ll.delete_at_beginning();
+				l1.delete_at_beginning();
 				break;
 				
 			case 5:
-				ll.delete_at_end();
+				l1.delete_at_end();
 				break;
 				
 			case 6:
 				cout<<"Enter Position ( zero-indexed ): ";
 				cin>>p;
-				ll.delete_at_given_position(p);
+				l1.delete_at_given_position(p);
 				break;
 				
 			case 7:
 				cout<<"Enter Element to search : ";
 				cin>>p;
-				ll.search(p);
+				l1.search(p);
 				break;
 				
 			case 8:
-				ll.reverse();
+				l1.reverse();
 				break;	
 				
 			case 9:
-				ll.print();
+				l1.print();
 				break;
+			
+			case 10:
+				LinkedList l2;
+				int nn,yo;
+				cout<<"Enter Number of elements o be inserted on List 2 : ";
+				cin>>nn;
+				while(nn>0)
+				{
+					cout<<"Enter Element : ";
+					cin>>yo;
+					l2.insert_at_end(yo);
+					nn--;
+				}
+				cout<<"List 2 is : "<<endl;
+				l2.print();
+				l1=l1+l2;
+				cout<<"The Concatinated list is : "<<endl;
+				l1.print(); 
+				break;	
 			 	
 		}
 	} while (choice != 0);
