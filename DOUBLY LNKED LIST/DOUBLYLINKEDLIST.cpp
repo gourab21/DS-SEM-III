@@ -31,6 +31,8 @@ class LinkedList{
 			}
 		}
 		
+		LinkedList operator+();
+		friend LinkedList operator+(LinkedList l1,LinkedList l2);
 		
 		bool empty()
 		{
@@ -215,6 +217,29 @@ class LinkedList{
 			
 };
 
+LinkedList operator+(LinkedList ll,LinkedList l2)
+		{
+			if (!ll.empty() && !l2.empty())
+			{
+				l2.head->prev=ll.tail;
+				ll.tail->next=l2.head;
+				ll.tail=l2.tail;
+				cout<<"The Concatinated list is : "<<endl;
+				ll.print();
+				return ll;		
+			}
+			else
+			{
+				cout<<"One Of the List is Empty.... Cant Concatiate....";
+				return ll;
+			}	
+		}
+
+
+
+
+
+
 
 int main() {
 	
@@ -226,6 +251,7 @@ int main() {
 	cout<<("\n6 to Delete from mid");
 	cout<<("\n7 to Search Item");
 	cout<<("\n8 to Display");
+	cout<<("\n9 to Concat");
 	cout<<("\n0 to Exit");
 	
 	int choice,data,p;
@@ -278,6 +304,24 @@ int main() {
 				
 			case 8:
 				ll.print();
+				break;
+				
+			case 9:
+				LinkedList l2;
+				int nn,yo;
+				cout<<"Enter Number of elements o be inserted on List 2 : ";
+				cin>>nn;
+				while(nn>0)
+				{
+					cout<<"Enter Element : ";
+					cin>>yo;
+					l2.insert_at_end(yo);
+					nn--;
+				}
+				cout<<"List 2 is : "<<endl;
+				l2.print();
+				ll=ll+l2; 
+				cout<<endl;
 				break;
 			 	
 		}
