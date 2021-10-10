@@ -1,3 +1,0 @@
-Enter The First Number   - 123456789
-Enter The Second Number  - 987654321
-The Sum is -  111111110
