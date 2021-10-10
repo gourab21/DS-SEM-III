@@ -1,0 +1,2 @@
+Enter the PostFix Expression - 84/6+8/1-
+The Solution is - 0

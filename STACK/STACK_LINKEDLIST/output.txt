@@ -1,0 +1,85 @@
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 1
+Enter Element: 1
+
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 1
+Enter Element: 2
+
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 1
+Enter Element: 3
+
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 2
+Element Popped: 3
+
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 4
+The Top Element is : 2
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 5
+NO
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 3
+Element Popped: 2
+Element Popped: 1
+Stack is Cleared...
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice: 5
+Yes
+
+1 to Push
+2 to Pop
+3 to Clear
+4 to Top Element
+5 to IsEmpty
+0 to Exit
+Enter Your Choice:
