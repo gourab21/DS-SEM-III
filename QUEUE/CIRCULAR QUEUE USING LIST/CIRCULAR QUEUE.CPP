@@ -11,6 +11,7 @@ class Queue
 public:
 	int arr[max];
   int f, r, s;
+  
   Queue(int s = 5)
   {
     this->f = -1;
@@ -20,20 +21,23 @@ public:
 
   void enqueue(int ele)
   {
-    if (this->r >= (this->s - 1))
+    if (isFull())
     {
-      cout<< "Queue Full...\n";
-    }
-    else if (this->isEmpty())
-    {
-      this->r++;
-      this->f++;
-      this->arr[this->f] = ele;
-    }
-    else
-    {
-    	this->r++;
-      this->arr[(this->r)] = ele;
+    	cout<<"Queue Full...\n";
+	}
+	else if (this->r==this->s-1 || this->r==-1)
+	{
+		this->arr[0]=ele;
+		this->r=0;
+		if (this->f==-1)
+		{
+			this->f=0;
+		}
+	}
+	else
+	{
+		this->r=this->r+1;
+		this->arr[this->r]=ele;
 	}
   }
 
@@ -77,7 +81,12 @@ public:
   {
     return (this->f == -1);
   }
-
+  
+	bool isFull()
+	{
+		return ((this->f==0 && this->r==this->s-1) || (this->f==(this->r+1)));
+	}
+  
   void clear()
   {
     this->f = this->r = -1;
@@ -90,10 +99,18 @@ public:
     {
       cout << "Queue Empty...\n";
     }
-    else
+    else if (this->f <= this->r)
 	{
-    for (int i = this->f; i < this->r +1; i++)
-      cout << this->arr[i] << " <- ";
+    	for (int i = this->f; i < this->r +1; i++)
+      		cout << this->arr[i] << " <- ";
+   		cout<<endl;
+	}
+	else
+	{
+      	for (int i = this->f; i < this->s ; i++)
+      		cout << this->arr[i] << " <- ";
+      	for (int i = 0; i < this->r +1; i++)
+      		cout << this->arr[i] << " <- ";
     cout<<endl;
 	}
   }

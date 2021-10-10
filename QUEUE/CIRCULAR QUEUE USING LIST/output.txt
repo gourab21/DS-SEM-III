@@ -1,0 +1,67 @@
+Enter Size of Queue: 4
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 1
+Enter Element: 1
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 1
+Enter Element: 2
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 1
+Enter Element: 3
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 1
+Enter Element: 4
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 5
+Queue : 1 <- 2 <- 3 <- 4 <-
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 2
+ELement Dequeued is - 1
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 5
+Queue : 2 <- 3 <- 4 <-
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 1
+Enter Element: 5
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 5
+Queue : 2 <- 3 <- 4 <- 5 <-
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 3
+The Front element is - 2
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 4
+Queue Cleared...
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 5
+Queue : Queue Empty...
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 2
+Queue Empty...
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 1
+Enter Element: 1
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 2
+ELement Dequeued is - 1
+Queue Cleared...
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice : 5
+Queue : Queue Empty...
+
+(1) Enqueue (2) Dequeue (3) Front  (4) Clear (5) Display  (0) Exit
+Enter Choice :
